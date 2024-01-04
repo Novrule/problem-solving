@@ -27,14 +27,7 @@ int findParent(int *arr, int a, int b) {
 }
 
 int unionParent(int *arr, int a, int b) {
-  int parentA = getParent(arr, a);
-  int parentB = getParent(arr, b);
-
-  if (parentA > parentB) {
-    arr[parentA] = parentB;
-  } else {
-    arr[parentB] = parentA;
-  }
+  arr[getParent(arr, a)] = getParent(arr, b);
 
   return 0;
 }
@@ -62,6 +55,9 @@ int group(int n, int m) {
 }
 
 int main(void) {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+
   int n, m;
 
   input(n, m);
