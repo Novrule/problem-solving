@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
 
   cin >> T;
 
-  for (test_case = 1; test_case <= T; ++test_case) {
+  for (test_case = 1; test_case <= T; test_case++) {
     int ans = 0;
     int sum = 0;
     int n;
