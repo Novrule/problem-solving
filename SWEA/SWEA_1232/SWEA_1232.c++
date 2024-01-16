@@ -39,7 +39,7 @@ void input(Node **tree) {
   }
 }
 
-double caculate(double a, string op, double b) {
+double operate(double a, string op, double b) {
   if (op == "+") {
     return a + b;
   } else if (op == "-") {
@@ -51,17 +51,17 @@ double caculate(double a, string op, double b) {
   }
 }
 
-double postorder(Node *node) {
+double caculate(Node *node) {
   if (!isOperator(node->data)) {
     return stod(node->data);
   }
 
-  return caculate(postorder(node->left), node->data, postorder(node->right));
+  return operate(caculate(node->left), node->data, caculate(node->right));
 }
 
 void output(int test_case, Node *tree) {
   cout << '#' << test_case << ' ';
-  cout << static_cast<int>(postorder(&tree[1])) << '\n';
+  cout << static_cast<int>(caculate(&tree[1])) << '\n';
 }
 
 int main(int argc, char **argv) {
