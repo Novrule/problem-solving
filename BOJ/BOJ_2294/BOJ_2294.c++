@@ -36,8 +36,8 @@ int dp(int n, int k, vector<int> coins) {
 
 int main(void) {
   ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-  cout.tie(NULL);
+  cin.tie(0);
+  cout.tie(0);
 
   int n, k, result;
   vector<int> coins;
