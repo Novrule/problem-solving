@@ -14,40 +14,40 @@ int main(int argc, char** argv) {
   cin >> T;
 
   for (test_case = 1; test_case <= T; test_case++) {
-    int N, middle, ans = 0;
+    int N, mid, ans = 0;
     priority_queue<int> front;
     priority_queue<int, vector<int>, greater<int>> back;
 
-    cin >> N >> middle;
+    cin >> N >> mid;
 
     for (int i = 0; i < N; i++) {
       int X, Y;
 
       cin >> X >> Y;
 
-      if (X < middle) {
+      if (X < mid) {
         front.push(X);
       } else {
         back.push(X);
       }
 
-      if (Y < middle) {
+      if (Y < mid) {
         front.push(Y);
       } else {
         back.push(Y);
       }
 
       if (front.size() > back.size()) {
-        back.push(middle);
-        middle = front.top();
+        back.push(mid);
+        mid = front.top();
         front.pop();
       } else if (front.size() < back.size()) {
-        front.push(middle);
-        middle = back.top();
+        front.push(mid);
+        mid = back.top();
         back.pop();
       }
 
-      ans = (ans + middle) % 20171109;
+      ans = (ans + mid) % 20171109;
     }
 
     cout << '#' << test_case << ' ' << ans << '\n';
