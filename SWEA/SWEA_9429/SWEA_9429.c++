@@ -12,7 +12,7 @@ struct Directory {
   array<int, 30> childs;
 };
 
-Directory pool[50050];
+Directory pool[50001];
 int root, index = 0;
 
 int newDirectory(long long name) {
