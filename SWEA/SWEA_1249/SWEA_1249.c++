@@ -1,3 +1,4 @@
+#include <climits>
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -24,7 +25,7 @@ void input() {
 }
 
 int bfs() {
-  vector<vector<int>> dist(N, vector<int>(N, 10000));
+  vector<vector<int>> dist(N, vector<int>(N, INT_MAX));
   queue<pair<int, int>> q;
 
   dist[0][0] = 0;
