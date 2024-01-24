@@ -21,8 +21,8 @@ inline int getCompress(int v) {
 int init(int N, int sCity[], int eCity[], int mCost[]) {
   compress.clear();
   forwardMap.clear();
-  backwardMap.clear();
   forwardMap.resize(N);
+  backwardMap.clear();
   backwardMap.resize(N);
 
   for (int i = 0; i < N; i++) {
