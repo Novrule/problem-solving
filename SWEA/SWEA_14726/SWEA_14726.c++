@@ -117,10 +117,10 @@ int queryMax(int index, int left, int right, int start, int end) {
 }
 
 int output(int test_case) {
+  cout << '#' << test_case;
+
   initMin(1, 1, n);
   initMax(1, 1, n);
-
-  cout << '#' << test_case;
 
   for (int i = 0; i < q; i++) {
     int a, b, c;
