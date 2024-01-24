@@ -23,9 +23,9 @@ string solve() {
 
   if (K > trie.size()) {
     return "none";
+  } else {
+    return trie[K - 1];
   }
-
-  return trie[K - 1];
 }
 
 void output(string ans, int test_case) {
