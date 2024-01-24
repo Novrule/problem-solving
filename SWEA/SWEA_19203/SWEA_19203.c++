@@ -9,8 +9,8 @@ vector<int> hashCnt(1 << 20);
 deque<char> dq;
 
 void calcFront(int count) {
-  int hash = 0;
   int temp = 1;
+  int hash = 0;
 
   for (int i = 0; i < 4 && i < dq.size(); i++) {
     hash += temp * (dq[i] - 'a' + 1);
