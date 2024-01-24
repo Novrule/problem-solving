@@ -13,8 +13,8 @@ void input() {
   cin >> N >> M >> X;
 
   forwardMap.clear();
-  backwardMap.clear();
   forwardMap.resize(N + 1);
+  backwardMap.clear();
   backwardMap.resize(N + 1);
 
   for (int i = 0; i < M; i++) {
