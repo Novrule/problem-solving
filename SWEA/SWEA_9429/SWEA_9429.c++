@@ -12,8 +12,8 @@ struct Directory {
   array<int, 30> childs;
 };
 
-Directory pool[50001];
 int root, index = 0;
+Directory pool[50001];
 
 int newDirectory(long long name) {
   pool[index].name = name;
