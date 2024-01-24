@@ -3,8 +3,8 @@
 using namespace std;
 
 int N, K;
-int drive[200000];
 int data[200000];
+int drive[200000];
 
 void input(int &max) {
   cin >> N >> K;
