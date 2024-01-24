@@ -38,13 +38,13 @@ struct compare {
 
 long long dijkstra() {
   long long sum = 0;
-  vector<long long> dist(N + 1, LLONG_MAX);
   vector<int> edge(N + 1);
+  vector<long long> dist(N + 1, LLONG_MAX);
   priority_queue<pair<int, long long>, vector<pair<int, long long>>, compare>
       pq;
 
-  dist[1] = 0;
   edge[1] = 0;
+  dist[1] = 0;
   pq.push(make_pair(1, 0));
 
   while (!pq.empty()) {
