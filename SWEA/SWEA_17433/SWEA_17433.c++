@@ -68,7 +68,7 @@ int query(int mGradeCnt, int mGrade[], int mGenderCnt, char mGender[][7],
     mGrade[i]--;
 
     for (int j = 0; j < mGenderCnt; ++j) {
-      auto it =
+      set<student>::iterator it =
           students[mGrade[i]][mGender[j][0] == 'f'].lower_bound({0, mScore});
       if (it != students[mGrade[i]][mGender[j][0] == 'f'].end()) {
         if (*it < temp) {
