@@ -30,8 +30,10 @@ int compress(int mId) {
 
 void init(int N, int mId[], int mNum[]) {
   head.clear();
+
   tree.clear();
   tree.resize(18000);
+
   index.clear();
 
   for (int i = 0; i < N; i++) {
