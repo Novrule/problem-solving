@@ -1,161 +1,109 @@
-#include <unordered_map>
-#include <unordered_set>
+#include <climits>
+#include <queue>
 #include <vector>
 
 using namespace std;
 
-struct Node {
-  int parent;
+struct Road {
+  int cost;
   int cnt;
-  unordered_set<int> children;
-
-  Node() {
-    this->parent = -1;
-    this->cnt = 0;
-    this->children = unordered_set<int>();
-  }
+  int index;
 };
 
-vector<int> head;
-vector<Node> tree(18000);
-unordered_map<int, int> index;
+bool operator<(const Road &a, const Road &b) {
+  int aCost = static_cast<int>(a.cost / a.cnt);
+  int bCost = static_cast<int>(b.cost / b.cnt);
 
-int compress(int mId) {
-  if (!index.count(mId)) {
-    index[mId] = index.size();
+  if (aCost == bCost) {
+    return a.index > b.index;
+  } else {
+    return aCost < bCost;
   }
-
-  return index[mId];
 }
 
-void init(int N, int mId[], int mNum[]) {
-  head.clear();
-  tree.clear();
-  tree.resize(18000);
-  index.clear();
+vector<int> city;
+vector<int> costs;
+priority_queue<Road> pq;
+
+void init(int N, int mPopulation[]) {
+  city.clear();
+  city.resize(N);
+
+  costs.clear();
+  costs.resize(N - 1);
+
+  pq = priority_queue<Road>();
 
   for (int i = 0; i < N; i++) {
-    int id = compress(mId[i]);
+    city[i] = mPopulation[i];
 
-    head.push_back(id);
-    tree[id].cnt = mNum[i];
-  }
-
-  return;
-}
-
-int add(int mId, int mNum, int mParent) {
-  int id = compress(mId);
-  int parentId = compress(mParent);
-  int cnt = -1;
-
-  if (tree[parentId].children.size() >= 3) {
-    return -1;
-  } else {
-    tree[id].parent = parentId;
-    tree[id].cnt = mNum;
-    tree[parentId].children.insert(id);
-    tree[parentId].cnt += mNum;
-    cnt = tree[parentId].cnt;
-
-    id = parentId;
-    parentId = tree[parentId].parent;
-
-    while (parentId != -1) {
-      tree[parentId].cnt += mNum;
-
-      id = parentId;
-      parentId = tree[parentId].parent;
+    if (i < N - 1) {
+      costs[i] = mPopulation[i] + mPopulation[i + 1];
+      pq.push({costs[i], 1, i});
     }
-
-    return cnt;
-  }
-}
-
-void removeParent(int id) {
-  int parentId = tree[id].parent;
-  int cnt = tree[id].cnt;
-
-  tree[parentId].children.erase(id);
-
-  while (parentId != -1) {
-    tree[parentId].cnt -= cnt;
-
-    id = parentId;
-    parentId = tree[parentId].parent;
   }
 
   return;
 }
 
-void removeChild(int id) {
-  for (auto& child : tree[id].children) {
-    removeChild(child);
+int expand(int M) {
+  int ans;
+
+  while (M--) {
+    Road road = pq.top();
+    pq.pop();
+
+    int cost = road.cost;
+    int cnt = road.cnt + 1;
+    int index = road.index;
+
+    ans = static_cast<int>(cost / cnt);
+    costs[index] = ans;
+    pq.push({cost, cnt, index});
   }
 
-  tree[id] = Node();
-
-  return;
+  return ans;
 }
 
-int remove(int mId) {
-  int id = compress(mId);
+int calculate(int mFrom, int mTo) {
+  int from = min(mFrom, mTo);
+  int to = max(mFrom, mTo);
+  int ans = 0;
 
-  if (tree[id].parent == -1) {
-    return -1;
-  } else {
-    int cnt = tree[id].cnt;
-
-    removeParent(id);
-    removeChild(id);
-
-    return cnt;
+  for (int i = from; i < to; i++) {
+    ans += costs[i];
   }
+
+  return ans;
 }
 
-int binarySearch(int K, int max) {
-  int result = 0;
-  int left = 0;
-  int right = max;
+int divide(int mFrom, int mTo, int K) {
+  int ans;
+  int left = 1;
+  int right = INT_MAX;
 
   while (left <= right) {
-    int mid = (left + right) / 2;
+    int mid = left + (right - left) / 2;
     int cnt = 0;
 
-    for (auto& i : head) {
-      if (tree[i].cnt > mid) {
-        cnt += mid;
-      } else {
-        cnt += tree[i].cnt;
+    for (int i = mFrom; i <= mTo && cnt <= K; cnt++) {
+      int j = i;
+      int sum = 0;
+
+      while (j <= mTo && sum + city[j] <= mid) {
+        sum += city[j++];
       }
+
+      i = j;
     }
 
     if (cnt <= K) {
-      result = mid;
-      left = mid + 1;
-    } else {
+      ans = mid;
       right = mid - 1;
+    } else {
+      left = mid + 1;
     }
   }
 
-  return result;
-}
-
-int distribute(int K) {
-  int cnt = 0;
-  int max = 0;
-
-  for (auto& i : head) {
-    cnt += tree[i].cnt;
-
-    if (tree[i].cnt > max) {
-      max = tree[i].cnt;
-    }
-  }
-
-  if (cnt <= K) {
-    return max;
-  } else {
-    return binarySearch(K, max);
-  }
+  return ans;
 }
