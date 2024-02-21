@@ -28,36 +28,6 @@ int getMaximum() {
   return cur - MAXIMUM;
 }
 
-int getRight(int index, int cur = 1, int left = 0, int right = MAXIMUM - 1) {
-  if (index < left) {
-    return -1;
-  }
-
-  if (right <= index) {
-    if (maxTree[cur] <= maxTree[MAXIMUM + index]) {
-      return -1;
-    }
-
-    while (cur < MAXIMUM) {
-      if (maxTree[cur * 2 + 1] > maxTree[MAXIMUM + index])
-        cur = cur * 2 + 1;
-      else
-        cur = cur * 2;
-    }
-
-    return cur - MAXIMUM;
-  }
-
-  int mid = (left + right) / 2;
-  int temp = getRight(index, cur * 2 + 1, mid + 1, right);
-
-  if (temp != -1) {
-    return temp;
-  } else {
-    return getRight(index, cur * 2, left, mid);
-  }
-}
-
 int getLeft(int index, int cur = 1, int left = 0, int right = MAXIMUM - 1) {
   if (right < index) {
     return n;
@@ -85,6 +55,36 @@ int getLeft(int index, int cur = 1, int left = 0, int right = MAXIMUM - 1) {
     return temp;
   } else {
     return getLeft(index, cur * 2 + 1, mid + 1, right);
+  }
+}
+
+int getRight(int index, int cur = 1, int left = 0, int right = MAXIMUM - 1) {
+  if (index < left) {
+    return -1;
+  }
+
+  if (right <= index) {
+    if (maxTree[cur] <= maxTree[MAXIMUM + index]) {
+      return -1;
+    }
+
+    while (cur < MAXIMUM) {
+      if (maxTree[cur * 2 + 1] > maxTree[MAXIMUM + index])
+        cur = cur * 2 + 1;
+      else
+        cur = cur * 2;
+    }
+
+    return cur - MAXIMUM;
+  }
+
+  int mid = (left + right) / 2;
+  int temp = getRight(index, cur * 2 + 1, mid + 1, right);
+
+  if (temp != -1) {
+    return temp;
+  } else {
+    return getRight(index, cur * 2, left, mid);
   }
 }
 
