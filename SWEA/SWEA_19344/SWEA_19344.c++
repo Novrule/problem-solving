@@ -69,10 +69,11 @@ int getRight(int index, int cur = 1, int left = 0, int right = MAXIMUM - 1) {
     }
 
     while (cur < MAXIMUM) {
-      if (maxTree[cur * 2 + 1] > maxTree[MAXIMUM + index])
+      if (maxTree[cur * 2 + 1] > maxTree[MAXIMUM + index]) {
         cur = cur * 2 + 1;
-      else
+      } else {
         cur = cur * 2;
+      }
     }
 
     return cur - MAXIMUM;
