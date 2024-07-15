@@ -4,15 +4,7 @@
 using namespace std;
 
 int N;
-int input[3] = {
-    0,
-};
-int min_arr[3] = {
-    0,
-};
-int max_arr[3] = {
-    0,
-};
+int input[3], min_arr[3], max_arr[3];
 
 void solve() {
   int tmp_0, tmp_1, tmp_2;
