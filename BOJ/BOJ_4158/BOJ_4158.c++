@@ -4,9 +4,9 @@
 using namespace std;
 
 int main(void) {
-  ios_base ::sync_with_stdio(false);
-  cin.tie(NULL);
-  cout.tie(NULL);
+  ios_base ::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
 
   while (1) {
     int N, L;
