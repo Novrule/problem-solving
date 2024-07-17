@@ -51,9 +51,7 @@ void dfs(int node) {
 void getAns() {
   int parent = tree[M].parent;
 
-  if (parent == -1) {
-    return;
-  } else {
+  if (parent != -1) {
     tree[parent].child.erase(M);
     dfs(root);
   }
