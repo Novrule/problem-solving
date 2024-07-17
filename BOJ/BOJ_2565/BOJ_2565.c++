@@ -44,7 +44,7 @@ int dp(int n, int last, vector<int> &arr) {
 }
 
 int main(void) {
-  ios_base::sync_with_stdio(false);
+  ios_base::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
 
