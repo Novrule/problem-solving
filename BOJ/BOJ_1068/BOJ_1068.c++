@@ -62,7 +62,7 @@ void getAns() {
 void output() { cout << ans << '\n'; }
 
 int main(void) {
-  ios::sync_with_stdio(false);
+  ios::sync_with_stdio(0);
   cin.tie(0);
   cout.tie(0);
 
