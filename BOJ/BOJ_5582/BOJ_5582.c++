@@ -8,9 +8,9 @@ using namespace std;
 int dp[4001][4001];
 
 int main(void) {
-  ios_base ::sync_with_stdio(false);
-  cin.tie(NULL);
-  cout.tie(NULL);
+  ios_base ::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
 
   int ans = 0;
   string s1, s2;
