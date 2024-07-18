@@ -90,7 +90,7 @@ void solve() {
     }
   }
 
-  cout << ans << endl;
+  cout << ans << '\n';
 }
 
 int main(void) {
