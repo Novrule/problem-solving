@@ -93,7 +93,7 @@ void solve() {
   cout << ans << endl;
 }
 
-int main() {
+int main(void) {
   input();
   solve();
 
