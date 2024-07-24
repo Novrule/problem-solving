@@ -3,6 +3,7 @@
 
 using namespace std;
 
+int ans = -1;
 int N, K, M;
 vector<int> v;
 
@@ -27,8 +28,6 @@ void input() {
 }
 
 int binary_search(int left, int right) {
-  int ans = -1;
-
   while (left <= right) {
     int mid = (left + right) / 2;
     int cnt = 0;
@@ -44,11 +43,9 @@ int binary_search(int left, int right) {
       ans = mid;
     }
   }
-
-  return ans;
 }
 
-void output() { cout << binary_search(1, 1e9) << '\n'; }
+void output() { cout << ans << '\n'; }
 
 int main(void) {
   ios::sync_with_stdio(0);
@@ -56,6 +53,7 @@ int main(void) {
   cout.tie(0);
 
   input();
+  binary_search(1, 1000000000);
   output();
 
   return 0;
