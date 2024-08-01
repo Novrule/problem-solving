@@ -11,7 +11,7 @@ int N;
 int population[11];
 bool map[11][11];
 bool check[11];
-bool visit[11];
+bool visited[11];
 
 void input() {
   cin >> N;
@@ -40,9 +40,9 @@ bool bfs(vector<int> vec, bool flag) {
   int cnt = 1;
   queue<int> q;
 
-  memset(visit, false, sizeof(visit));
+  memset(visited, false, sizeof(visited));
 
-  visit[vec[0]] = true;
+  visited[vec[0]] = true;
   q.push(vec[0]);
 
   while (!q.empty()) {
@@ -51,8 +51,8 @@ bool bfs(vector<int> vec, bool flag) {
     q.pop();
 
     for (int i = 1; i <= N; i++) {
-      if (map[tmp][i] == true && check[i] == flag && visit[i] == false) {
-        visit[i] = true;
+      if (map[tmp][i] == true && check[i] == flag && visited[i] == false) {
+        visited[i] = true;
         q.push(i);
         cnt++;
       }
