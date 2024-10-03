@@ -60,8 +60,8 @@ void solve() {
     cin >> k;
 
     for (int i = 0; i < k; i++) {
-      char cmd;
       int n;
+      char cmd;
 
       cin >> cmd >> n;
 
